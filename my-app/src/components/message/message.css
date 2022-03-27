@@ -1,0 +1,25 @@
+.mt-24{
+    margin-top: 24px;
+}
+.massage-box{
+    padding: 12px;
+    background: #FFFFFF;
+    min-width: 150px;
+    border-radius: 16px 16px 0 16px;
+    margin-top: 20px;
+}
+.message-text{
+    color: #000000;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: right;
+}
+.text-green{
+    color: green;
+}
+.text-red{
+    color: red;
+}
+.text-blue{
+    color: blue;
+}
