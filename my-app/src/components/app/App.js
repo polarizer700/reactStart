@@ -1,24 +1,56 @@
-import './App.css';
-import React from 'react';
-import Message from "../message/Message";
-function App(props) {
+
+import "./App.css";
+import React, { useEffect, useRef, useState }  from "react";
+import { AUTHORS } from "../../utils/constants";
+import { Message }  from "../message/Message";
+import { Form } from "../form/Form";
+import { MessageList } from "../MessageList/MessageList";
 
 
-    const textSome = 'some text'
-    const messageText = [
-        { text: 'Drink Coffee', classStyle: 'text-red', id: 1 },
-        { text: 'Drink Coffee', classStyle: 'text-green', id: 2 },
-        { text: 'Drink Coffee', classStyle: 'text-blue', id: 3 }
-    ];
+
+
+
+function App() {
+    const [messages, setMessages] = useState([]);
+    const timeout = useRef();
+    const wrapperRef = useRef();
+
+    const addMessage = (newMsg) => {
+        setMessages([...messages, newMsg]);
+    };
+
+    const sendMessage = (text) => {
+        addMessage({
+            author: AUTHORS.human,
+            text,
+            id: `msg-${Date.now()}`,
+        });
+    };
+
+    useEffect(() => {
+        if (messages[messages.length - 1]?.author === AUTHORS.human) {
+            timeout.current = setTimeout(() => {
+                addMessage({
+                    author: AUTHORS.robot,
+                    text: "hello friend",
+                    id: `msg-${Date.now()}`,
+                });
+            }, 1000);
+        }
+
+        return () => {
+            clearTimeout(timeout.current);
+        };
+    }, [messages]);
+
     return (
-        <div className="App">
-            <header className="App-header">
-                My First React App
-                <h3>Hello, {props.name}</h3>
-                <Message items={messageText}/>
-            </header>
-
+        <div className="App" ref={wrapperRef}>
+            <div className="message-content">
+            <MessageList messages={messages}/>
+            </div>
+            <Form onSubmit={sendMessage} />
         </div>
     );
 }
+
 export default App;
