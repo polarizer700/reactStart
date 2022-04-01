@@ -1,0 +1,30 @@
+.form-button,
+.form-input{
+    border-radius: 4px;
+    background: #1170FE;
+    padding: 8px;
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 20px;
+    border:0;
+    outline: 0;
+    margin-left: 16px;
+    display: block;
+}
+.form-input{
+    border:1px solid #f1f1f1;
+    background: #FFFFFF;
+    color: #000000;
+    margin-left: 0;
+    width: 100%;
+}
+form{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    background: #FFFFFF;
+}
