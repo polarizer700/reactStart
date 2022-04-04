@@ -9,6 +9,8 @@
     margin-top: 20px;
     border: 1px solid #000000;
     max-width: 200px;
+    transform: translateX(1000%);
+    transition-duration: 0.5s;
 }
 .message-text{
     color: #000000;
@@ -24,4 +26,27 @@
 }
 .text-blue{
     color: blue;
+}
+.message-content-body{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 60px;
+}
+.massage-box.msg-human{
+    margin-left: auto;
+    text-align: right;
+    animation: .1s linear 0.3s forwards alternate move;
+}
+.massage-box.msg-robot{
+ border-radius: 16px 16px 16px 0;
+    animation: .1s linear 0.3s forwards alternate move;
+}
+
+@keyframes move {
+    from{
+        transform: translateX(1000%);
+    }
+    to{
+        transform: translateX(0);
+    }
 }
