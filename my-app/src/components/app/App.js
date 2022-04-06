@@ -2,12 +2,10 @@
 import "./App.css";
 import React, { useEffect, useRef, useState }  from "react";
 import { AUTHORS } from "../../utils/constants";
-import { Message }  from "../message/Message";
+
 import { Form } from "../form/Form";
 import { MessageList } from "../MessageList/MessageList";
-
-
-
+import {ChatList} from "../ChatList/ChatList";
 
 
 function App() {
@@ -24,16 +22,19 @@ function App() {
             author: AUTHORS.human,
             text,
             id: `msg-${Date.now()}`,
+            classNameBlock: 'msg-human',
         });
     };
 
     useEffect(() => {
         if (messages[messages.length - 1]?.author === AUTHORS.human) {
+
             timeout.current = setTimeout(() => {
                 addMessage({
                     author: AUTHORS.robot,
                     text: "hello friend",
                     id: `msg-${Date.now()}`,
+                    classNameBlock: 'msg-robot',
                 });
             }, 1000);
         }
@@ -45,10 +46,15 @@ function App() {
 
     return (
         <div className="App" ref={wrapperRef}>
+            <ChatList />
             <div className="message-content">
-            <MessageList messages={messages}/>
+                <div className="message-content-body">
+                    <MessageList messages={messages}/>
+                </div>
+
+                <Form onSubmit={sendMessage} />
             </div>
-            <Form onSubmit={sendMessage} />
+
         </div>
     );
 }

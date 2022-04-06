@@ -7,9 +7,18 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
+  display: flex;
 
 }
 .message-content{
-  overflow-y: scroll;
+  overflow: hidden;
   height: 100%;
+  width: 100%;
+  position: relative;
+  padding: 20px;
+}
+.message-content-body{
+  height: 100%;
+  overflow-y: scroll;
+  position: relative;
 }
