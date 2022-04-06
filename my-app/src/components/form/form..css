@@ -1,5 +1,5 @@
-.form-button,
-.form-input{
+.MuiButton-root.form-button,
+.MuiOutlinedInput-input.form-input{
     border-radius: 4px;
     background: #1170FE;
     padding: 8px;
@@ -9,9 +9,22 @@
     border:0;
     margin-left: 16px;
     display: block;
+    transition-duration: 0.2s;
+    border: 1px solid transparent;
+}
+.MuiButton-root.form-button{
+    width: 80px;
+}
+/*.MuiOutlinedInput-root{*/
+/*    height: 100%;*/
+/*}*/
+.MuiButton-root.form-button:hover{
+    background: #FFFFFF;
+    border: 1px solid #1170FE;
+    color: #1170FE;
 }
 .form-input{
-    border:1px solid #f1f1f1;
+    border:1px solid #9ac9e7;
     background: #FFFFFF;
     color: #000000;
     margin-left: 0;
