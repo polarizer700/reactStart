@@ -1,62 +1,32 @@
 
 import "./App.css";
 import React, { useEffect, useRef, useState }  from "react";
-import { AUTHORS } from "../../utils/constants";
 
-import { Form } from "../form/Form";
-import { MessageList } from "../MessageList/MessageList";
 import {ChatList} from "../ChatList/ChatList";
+import {BrowserRouter, Link, NavLink, Route, Routes} from "react-router-dom";
+import { Chat } from '../../screens/Chat';
 
 
-function App() {
-    const [messages, setMessages] = useState([]);
-    const timeout = useRef();
-    const wrapperRef = useRef();
+const Home = () => (
+    <h4>Home Page</h4>
+)
 
-    const addMessage = (newMsg) => {
-        setMessages([...messages, newMsg]);
-    };
+export default function App(){
+    return(
+        <BrowserRouter>
+            <ul className="menu">
+                <li><NavLink style={({isActive}) => ({ color: isActive ? "green" : "yellow"})} to="/">Home</NavLink></li>
+                <li><NavLink style={({isActive}) => ({ color: isActive ? "green" : "yellow"})} to="/chat">Chat</NavLink></li>
+            </ul>
 
-    const sendMessage = (text) => {
-        addMessage({
-            author: AUTHORS.human,
-            text,
-            id: `msg-${Date.now()}`,
-            classNameBlock: 'msg-human',
-        });
-    };
 
-    useEffect(() => {
-        if (messages[messages.length - 1]?.author === AUTHORS.human) {
-
-            timeout.current = setTimeout(() => {
-                addMessage({
-                    author: AUTHORS.robot,
-                    text: "hello friend",
-                    id: `msg-${Date.now()}`,
-                    classNameBlock: 'msg-robot',
-                });
-            }, 1000);
-        }
-
-        return () => {
-            clearTimeout(timeout.current);
-        };
-    }, [messages]);
-
-    return (
-        <div className="App" ref={wrapperRef}>
-            <ChatList />
-            <div className="message-content">
-                <div className="message-content-body">
-                    <MessageList messages={messages}/>
-                </div>
-
-                <Form onSubmit={sendMessage} />
-            </div>
-
-        </div>
-    );
+                <Routes>
+                    <Route path="/" element={<Home />}/>
+                    <Route path="/chat" element={<ChatList />}>
+                        <Route path=":id" element={<Chat />} />
+                    </Route>
+                    <Route path="*" element={<h4>404</h4>} />
+                </Routes>
+        </BrowserRouter>
+);
 }
-
-export default App;

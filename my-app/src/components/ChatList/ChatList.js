@@ -1,4 +1,8 @@
 import './ChatList.css'
+import {Link, Outlet} from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+
 
 
 const chats = [
@@ -14,36 +18,28 @@ const chats = [
         name: "Chat3",
         id: "chat3",
     },
-    {
-        name: "Chat1",
-        id: "chat4",
-    },
-    {
-        name: "Chat2",
-        id: "chat5",
-    },
-    {
-        name: "Chat3",
-        id: "chat6",
-    },
-    {
-        name: "Chat1",
-        id: "chat7",
-    },
-    {
-        name: "Chat2",
-        id: "chat8",
-    },
-    {
-        name: "Chat3",
-        id: "chat9",
-    },
 ];
 
-export const ChatList = () => (
-    <div className="chat-list">
-        {chats.map ((chat)=>(
-            <div key={chat.id} className="chat-item">{chat.name}</div>
-            ))}
-    </div>
-);
+export const ChatList = () => {
+
+    const deleteChat = ()=>{
+        console.log(12)
+    }
+
+    return (
+        <>
+            <div className="chat-list">
+                {chats.map((chat) => (
+                    <Link to={`/chat/${chat.id}`} key={chat.id} className="chat-item">
+                        {chat.name}
+                        <FontAwesomeIcon icon={faTrashCan} onClick={deleteChat}/>
+
+                    </Link>
+                ))}
+                <button>add chats</button>
+            </div>
+
+            <Outlet/>
+        </>
+    );
+}
