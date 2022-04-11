@@ -1,0 +1,42 @@
+.checkbox-resiver{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 42px;
+    height: 24px;
+    background: grey;
+    display: block;
+    border-radius: 20px;
+    position: relative;
+}
+
+label:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5px;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+.checkbox-resiver:checked + label {
+
+    background: radial-gradient(circle, rgba(159,237,8,1) 0%, rgba(21,165,176,1) 35%, rgba(175,88,186,1) 54%, rgba(135,4,35,0.3984944319524685) 68%, rgba(0,212,255,1) 100%);}
+
+.checkbox-resiver:checked + label:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%) translateY(-50%);
+}
+
+label:active:after {
+    width: 24px;
+}
