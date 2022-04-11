@@ -2,7 +2,9 @@ import './ChatList.css'
 import {Link, Outlet} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
-
+import {Button} from "@mui/material";
+import React, {useContext, useState} from "react";
+import { ThemeContext } from "../../utils/ThemeContext";
 
 
 const chats = [
@@ -22,17 +24,18 @@ const chats = [
 
 export const ChatList = () => {
 
-    const deleteChat = ()=>{
-        console.log(12)
-    }
+    const { changeTheme } = useContext(ThemeContext);
+
+
 
     return (
         <>
+
             <div className="chat-list">
                 {chats.map((chat) => (
                     <Link to={`/chat/${chat.id}`} key={chat.id} className="chat-item">
                         {chat.name}
-                        <FontAwesomeIcon icon={faTrashCan} onClick={deleteChat}/>
+                        <FontAwesomeIcon icon={faTrashCan} />
 
                     </Link>
                 ))}
